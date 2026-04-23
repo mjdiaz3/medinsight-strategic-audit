@@ -33,8 +33,8 @@
         .status-bar { font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem; }
 
         /* Scannable Tabs */
-        .tabs-nav { display: flex; gap: 0.5rem; margin-bottom: 2rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; width: fit-content; }
-        .tab-link { padding: 0.5rem 1.25rem; border: none; background: transparent; font-size: 0.875rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+        .tabs-nav { display: flex; gap: 0.5rem; margin-bottom: 2rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; width: fit-content; overflow-x: auto; }
+        .tab-link { padding: 0.5rem 1.25rem; border: none; background: transparent; font-size: 0.875rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
         .tab-link.active { background: white; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
         /* Card System */
@@ -46,17 +46,15 @@
         .badge-success { background: #dcfce7; color: #166534; }
         .badge-warning { background: #fef3c7; color: #92400e; }
         .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-rank { background: #f1f5f9; color: var(--primary); border: 1px solid var(--border); }
 
         .content-body { font-size: 0.9375rem; color: var(--text); }
         .source-link { font-size: 0.75rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-top: 1rem; display: block; }
-        .source-link:hover { text-decoration: underline; }
 
-        /* Scannable SWOT */
         .swot-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
         .swot-item { background: #f8fafc; padding: 0.75rem; border-radius: 8px; font-size: 0.8125rem; border-left: 3px solid var(--border); }
         .swot-item strong { display: block; font-size: 0.7rem; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.2rem; }
 
-        /* Advisor Sidebar (Optional/Inline) */
         .advisor-box { background: var(--primary); color: white; padding: 1.5rem; border-radius: 12px; margin-top: 3rem; }
         .advisor-box h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--success); margin-bottom: 0.5rem; }
         .advisor-box p { font-size: 1.1rem; font-weight: 500; font-style: italic; }
@@ -70,24 +68,68 @@
 <body>
     <nav class="navbar">
         <div class="brand"><div class="pulse-dot"></div> MedInsight Intelligence</div>
-        <div class="status-bar">Sync: April 23, 2026 14:08</div>
+        <div class="status-bar">Sync: April 23, 2026 14:12</div>
     </nav>
 
     <div class="container">
         <header>
             <h1>Strategic Command Center</h1>
-            <p class="status-bar">Real-time competitive intelligence and market sentiment.</p>
+            <p class="status-bar">Brutally honest competitive intelligence and internal self-audit.</p>
         </header>
 
         <div class="tabs-nav">
-            <button class="tab-link active" onclick="openTab(event, 'overview')">Overview</button>
+            <button class="tab-link active" onclick="openTab(event, 'medinsight')">MedInsight (Self-Audit)</button>
+            <button class="tab-link" onclick="openTab(event, 'overview')">Overview</button>
             <button class="tab-link" onclick="openTab(event, 'ada')">Ada</button>
             <button class="tab-link" onclick="openTab(event, 'buoy')">Buoy</button>
             <button class="tab-link" onclick="openTab(event, 'khealth')">K Health</button>
         </div>
 
+        <!-- MEDINSIGHT SELF-AUDIT (NEW) -->
+        <div id="medinsight" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Top Strategic Wedge</span>
+                    <span class="badge badge-rank">Rank #1</span>
+                </div>
+                <div class="content-body">
+                    <strong>The Clinician Brief:</strong> Our primary differentiator. We are the only tool that manages the hand-off to care. While others identify the problem, we prepare the patient for the solution.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Critical Authority Gap</span>
+                    <span class="badge badge-danger">Rank #1 Risk</span>
+                </div>
+                <div class="content-body">
+                    <strong>Clinical Validation Scale:</strong> We lack the 10+ year proprietary datasets of Ada and K Health. We are a "thin layer" in terms of raw data, which makes us highly dependent on the quality of external source citations (Mayo Clinic, etc.) for credibility.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Engagement Vulnerability</span>
+                    <span class="badge badge-warning">Rank #2 Risk</span>
+                </div>
+                <div class="content-body">
+                    <strong>Zero Longitudinal Stickiness:</strong> We are currently a "point-in-time" tool. Once a user gets their brief, they have no recurring reason to return. We lack the daily health-habit moat that keeps users tied to a platform long-term.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">The "Moat" Problem</span>
+                    <span class="badge badge-warning">Rank #3 Risk</span>
+                </div>
+                <div class="content-body">
+                    <strong>Low Feature Barrier:</strong> The "Clinician Brief" is a process innovation, not a technical one. A giant like WebMD or Ada could build a "Generate PDF for Doctor" feature in a week, potentially neutralizing our primary wedge.
+                </div>
+            </div>
+        </div>
+
         <!-- OVERVIEW -->
-        <div id="overview" class="tab-content active">
+        <div id="overview" class="tab-content">
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">Market Pulse: AI Safety Warning</span>
@@ -99,19 +141,9 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Key Intelligence: The "Scripted" Crisis</span>
-                    <span class="badge badge-warning">Watch</span>
-                </div>
-                <div class="content-body">
-                    Competitors (K Health) are seeing churn spikes due to purely automated handoffs. Users want the "human bridge" we provide via the Clinician Brief.
-                </div>
-            </div>
-
             <div class="advisor-box">
                 <h2>Strategic Advisory</h2>
-                <p>"Prioritize source-transparency in your UI. In a market terrified of AI hallucinations, the tool that shows its work wins the trust war."</p>
+                <p>"Don't compete on data volume—you'll lose to K Health. Compete on trust and preparation. You aren't an 'Answer Bot'; you're a 'Doctor Prep' tool."</p>
             </div>
         </div>
 
