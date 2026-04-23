@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedInsight AI | Market Pulse & Intelligence Loop</title>
+    <title>MedInsight AI | Strategic Command Center</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0f172a;
-            --accent: #10b981; /* Shifted to a more 'active/pulse' green */
-            --accent-blue: #3b82f6;
+            --accent: #10b981;
             --bg: #f8fafc;
             --card: #ffffff;
             --border: #e2e8f0;
@@ -17,285 +16,226 @@
             --text-light: #64748b;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 5rem; }
+        h1, h2, h3, .brand { font-family: 'Outfit', sans-serif; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            padding-bottom: 5rem;
-        }
+        .navbar { background: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .brand { font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .pulse-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
 
-        h1, h2, h3, .brand {
-            font-family: 'Outfit', sans-serif;
-        }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; }
 
-        .navbar {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
+        /* Tabs Navigation */
+        .tabs-nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand {
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pulse-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .dashboard-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 2rem;
-        }
-
-        .dashboard-header h1 {
-            font-size: 2.5rem;
-            letter-spacing: -0.03em;
-            color: var(--primary);
-        }
-
-        .live-status {
-            display: flex;
-            align-items: center;
             gap: 1rem;
-            font-size: 0.875rem;
-            color: var(--text-light);
-            margin-top: 0.5rem;
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
-        .pulse-section {
-            background: var(--card);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 2rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .pulse-card {
-            padding: 1.5rem;
-            border-radius: 12px;
-            background: #f8fafc;
-            border-left: 4px solid var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .pulse-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .advisor-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .advisor-card {
-            background: var(--primary);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 16px;
-            position: relative;
-        }
-
-        .advisor-card h2 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .advisor-card p {
-            font-size: 0.9375rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .btn-action {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.8125rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .legacy-section {
-            margin-top: 4rem;
-            opacity: 0.6;
-            transition: opacity 0.3s;
-        }
-
-        .legacy-section:hover {
-            opacity: 1;
-        }
-
-        .matrix-mini {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8125rem;
-        }
-
-        .matrix-mini th {
-            text-align: left;
-            padding: 0.75rem;
-            background: #f1f5f9;
-        }
-
-        .matrix-mini td {
-            padding: 0.75rem;
             border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
         }
 
-        @media (max-width: 900px) {
-            .main-grid { grid-template-columns: 1fr; }
+        .tab-link {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
         }
+
+        .tab-link.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Tab Content */
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .card { background: var(--card); border-radius: 16px; border: 1px solid var(--border); padding: 2rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); margin-bottom: 2rem; }
+        
+        .pulse-card { padding: 1.5rem; border-radius: 12px; background: #f8fafc; border-left: 4px solid var(--accent); margin-bottom: 1.5rem; }
+        .pulse-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--primary); }
+
+        .tag { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; }
+        .tag-trend { background: #eff6ff; color: #3b82f6; }
+        .tag-risk { background: #fef2f2; color: #ef4444; }
+
+        .advisor-card { background: var(--primary); color: white; padding: 2rem; border-radius: 16px; margin-bottom: 1.5rem; }
+        .advisor-card h2 { color: var(--accent); margin-bottom: 1rem; }
+
+        /* Competitor Detail Styles */
+        .comp-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+        .comp-logo { width: 48px; height: 48px; background: #f1f5f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--primary); }
+        .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .swot-item { padding: 1rem; border-radius: 8px; border: 1px solid var(--border); }
+        .swot-title { font-weight: 700; font-size: 0.75rem; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem; }
+
+        @media (max-width: 900px) { .grid, .swot-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="brand">
-            <div class="pulse-dot"></div>
-            Market Pulse Engine
-        </div>
-        <div class="live-status">System Status: Active • Loop: 3.3 Innermost</div>
+        <div class="brand"><div class="pulse-dot"></div> MedInsight Command</div>
+        <div style="font-size: 0.8rem; opacity: 0.8;">Sync: April 23, 2026 • Live Intelligence Loop</div>
     </nav>
 
     <div class="container">
-        <header class="dashboard-header">
-            <h1>Intelligence Command Center</h1>
-            <div class="live-status">
-                <span>Last Sync: <strong>April 23, 2026 13:36</strong></span>
-                <span>•</span>
-                <span>Source: Web Pulse Scan (Reddit, News, Competitor Reviews)</span>
-            </div>
-        </header>
+        <div class="tabs-nav">
+            <button class="tab-link active" onclick="openTab(event, 'overview')">Market Overview</button>
+            <button class="tab-link" onclick="openTab(event, 'ada')">Ada Health</button>
+            <button class="tab-link" onclick="openTab(event, 'buoy')">Buoy Health</button>
+            <button class="tab-link" onclick="openTab(event, 'khealth')">K Health</button>
+        </div>
 
-        <div class="main-grid">
-            <div class="pulse-section">
-                <div class="section-header">
-                    <h2>Real-Time Market Sentiment</h2>
-                    <span class="btn-action" style="background: #e2e8f0; color: var(--text-light);">Latest Updates</span>
+        <!-- OVERVIEW TAB -->
+        <div id="overview" class="tab-content active">
+            <div class="grid">
+                <div class="main-col">
+                    <div class="card">
+                        <span class="tag tag-trend">Industry Trend</span>
+                        <h2>The "Hallucination Defense" Era</h2>
+                        <p style="margin: 1rem 0; color: var(--text-light);">Safety organizations (ECRI) have flagged AI hallucinations as the #1 health tech risk for 2026. Users are pivoting away from "Answer Engines" toward "Source-Backed Educators."</p>
+                        
+                        <div class="pulse-card">
+                            <h3>Key News: The Scripted Crisis</h3>
+                            <p>Data suggests a 15% increase in churn for platforms that rely on purely automated, scripted telehealth handoffs. Users want the "bridge" to human care, not a replacement.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>Emerging Market Gaps</h2>
+                        <div class="swot-grid">
+                            <div class="swot-item" style="border-top: 3px solid #3b82f6;">
+                                <div class="swot-title">Mental Health Education</div>
+                                <p style="font-size: 0.875rem;">Major triage tools (Ada) still struggle with the nuances of health anxiety, leaving a gap for specialized conversational flows.</p>
+                            </div>
+                            <div class="swot-item" style="border-top: 3px solid var(--accent);">
+                                <div class="swot-title">Patient Advocacy</div>
+                                <p style="font-size: 0.875rem;">Almost no competitor prepares the user for the doctor visit. The "Clinician Brief" remains our primary blue ocean.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="pulse-card">
-                    <h3>The "Scripted" Crisis (Competitor: K Health)</h3>
-                    <p>Users are reporting high churn due to "bot-like" medical interactions. There is a growing demand for transparency in AI-to-Human handoffs. This validates our <strong>Clinician Brief</strong> strategy.</p>
-                </div>
-
-                <div class="pulse-card" style="border-left-color: #f59e0b;">
-                    <h3>Mental Health Complexity Gap (Competitor: Ada)</h3>
-                    <p>New user feedback indicates Ada's structured assessment fails to capture the nuances of health anxiety and depression, creating a "feature gap" we can exploit with specialized education flows.</p>
-                </div>
-
-                <div class="pulse-card" style="border-left-color: #ef4444;">
-                    <h3>Privacy Trust Deficit (Market Trend)</h3>
-                    <p>The ECRI 2026 report has identified AI hallucinations as the #1 health tech safety risk. Users are actively seeking platforms that cite sources (Mayo Clinic, etc.) rather than just giving answers.</p>
-                </div>
-            </div>
-
-            <div class="advisor-section">
-                <div class="advisor-card">
-                    <h2>Strategic Advisory</h2>
-                    <p>"Pivot communication from 'Symptom Checker' to 'Clinical Preparation.' Your biggest wedge is the fact that you empower users to speak to doctors, rather than trying to replace the doctor."</p>
-                    <a href="../strategic-pivot.md" class="btn-action">Read Full Memo</a>
-                </div>
-
-                <div class="advisor-card" style="background: #ffffff; border: 1px solid var(--border); color: var(--text);">
-                    <h2 style="color: var(--accent-blue);">Recommended Priority</h2>
-                    <p style="color: var(--text-light); font-style: normal;"><strong>Mental Health Bridge:</strong> Develop a specialized "Clinician Brief" for anxiety/depression to capture users frustrated with Ada's rigid logic.</p>
-                    <span class="btn-action" style="background: var(--accent-blue); color: white;">Queue Feature</span>
+                <div class="side-col">
+                    <div class="advisor-card">
+                        <h2>Strategic Pivot</h2>
+                        <p>"Move from 'Chatbot' to 'Care Navigator.' Your UI should prioritize source citations to win the trust war against hallucinations."</p>
+                    </div>
+                    <div class="card" style="padding: 1.5rem;">
+                        <h3>Active Loop</h3>
+                        <p style="font-size: 0.875rem; color: var(--text-light); margin-top: 0.5rem;">Monitoring: 4 Competitors<br>Sync Frequency: Real-Time<br>Status: Optimal</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="legacy-section">
-            <h2 class="section-title" style="font-size: 1rem; margin-bottom: 1rem;">Legacy Competitive Intelligence (Reference Only)</h2>
-            <div class="pulse-section" style="padding: 1.5rem; opacity: 0.8;">
-                <table class="matrix-mini">
-                    <thead>
-                        <tr>
-                            <th>Dimension</th>
-                            <th>MedInsight AI</th>
-                            <th>Buoy Health</th>
-                            <th>K Health</th>
-                            <th>Ada Health</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Value Prop</td>
-                            <td>Clinical Prep</td>
-                            <td>Triage</td>
-                            <td>Data Insights</td>
-                            <td>Assessment</td>
-                        </tr>
-                        <tr>
-                            <td>Key Feature</td>
-                            <td><strong>Clinician Brief</strong></td>
-                            <td>Triage AI</td>
-                            <td>Data Matching</td>
-                            <td>Validation</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- ADA TAB -->
+        <div id="ada" class="tab-content">
+            <div class="card">
+                <div class="comp-header">
+                    <div class="comp-logo">AH</div>
+                    <div>
+                        <h2>Ada Health</h2>
+                        <p style="font-size: 0.875rem; color: var(--text-light);">The Clinical Giant</p>
+                    </div>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-item">
+                        <div class="swot-title">Primary Strength</div>
+                        <p>Massive clinical knowledge base and high validation. Their structured assessment is the industry standard for triage.</p>
+                    </div>
+                    <div class="swot-item">
+                        <div class="swot-title">Critical Weakness</div>
+                        <p>Lengthy onboarding and a "clinical" feeling that can be intimidating for teens or those with health anxiety.</p>
+                    </div>
+                </div>
+                <div class="pulse-card" style="margin-top: 2rem; border-left-color: #3b82f6;">
+                    <h3>Latest Intelligence</h3>
+                    <p>Users on Reddit are reporting that Ada's rigid logic often leads to "unhelpful" results for chronic co-morbidities. Their focus on single-path triage is a gap for our multi-symptom education.</p>
+                </div>
             </div>
         </div>
+
+        <!-- BUOY TAB -->
+        <div id="buoy" class="tab-content">
+            <div class="card">
+                <div class="comp-header">
+                    <div class="comp-logo" style="color: #3b82f6;">BH</div>
+                    <div>
+                        <h2>Buoy Health</h2>
+                        <p style="font-size: 0.875rem; color: var(--text-light);">The Empathy Leader</p>
+                    </div>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-item">
+                        <div class="swot-title">Primary Strength</div>
+                        <p>Friendly, conversational brand voice that makes users feel heard. Strong ties to academic medical institutions.</p>
+                    </div>
+                    <div class="swot-item">
+                        <div class="swot-title">Critical Weakness</div>
+                        <p>Their "triage first" approach can feel like an insurance-tool rather than a personal assistant. No direct "Brief" for doctors.</p>
+                    </div>
+                </div>
+                <div class="pulse-card" style="margin-top: 2rem; border-left-color: #10b981;">
+                    <h3>Latest Intelligence</h3>
+                    <p>Buoy's focus has shifted heavily toward enterprise (insurance) partnerships. This leaves a gap for a truly independent, student-focused health advocate like MedInsight.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- K HEALTH TAB -->
+        <div id="khealth" class="tab-content">
+            <div class="card">
+                <div class="comp-header">
+                    <div class="comp-logo" style="color: #ef4444;">KH</div>
+                    <div>
+                        <h2>K Health</h2>
+                        <p style="font-size: 0.875rem; color: var(--text-light);">The Data Machine</p>
+                    </div>
+                </div>
+                <div class="swot-grid">
+                    <div class="swot-item">
+                        <div class="swot-title">Primary Strength</div>
+                        <p>Unmatched data volume. Their "People like you" feature is a powerful psychological hook for users seeking community validation.</p>
+                    </div>
+                    <div class="swot-item">
+                        <div class="swot-title">Critical Weakness</div>
+                        <p>Aggressive upselling to their own telehealth services. High data collection friction leads to privacy concerns.</p>
+                    </div>
+                </div>
+                <div class="pulse-card" style="margin-top: 2rem; border-left-color: #ef4444;">
+                    <h3>Latest Intelligence</h3>
+                    <p>Significant user backlash regarding technical stability and "scripted" feelings in the telehealth chat. This is our opportunity to win on <strong>Human-to-AI transparency</strong>.</p>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
