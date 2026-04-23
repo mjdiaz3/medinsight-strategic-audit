@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedInsight AI | Strategic Intelligence Dashboard</title>
+    <title>MedInsight AI | Market Pulse & Intelligence Loop</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0f172a;
-            --accent: #3b82f6;
-            --accent-light: #eff6ff;
+            --accent: #10b981; /* Shifted to a more 'active/pulse' green */
+            --accent-blue: #3b82f6;
             --bg: #f8fafc;
             --card: #ffffff;
             --border: #e2e8f0;
@@ -36,9 +36,9 @@
         }
 
         .navbar {
-            background: var(--card);
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border);
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -48,310 +48,253 @@
         }
 
         .brand {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--primary);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .brand-dot {
-            width: 8px;
-            height: 8px;
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
             background: var(--accent);
             border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .container {
-            max-width: 1100px;
-            margin: 3rem auto;
+            max-width: 1200px;
+            margin: 2rem auto;
             padding: 0 1.5rem;
         }
 
-        .hero {
-            margin-bottom: 4rem;
+        .dashboard-header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: var(--accent-light);
-            color: var(--accent);
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
+        .dashboard-header h1 {
+            font-size: 2.5rem;
             letter-spacing: -0.03em;
             color: var(--primary);
-            margin-bottom: 1rem;
         }
 
-        .summary {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 700px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
+        .live-status {
             display: flex;
             align-items: center;
             gap: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .stat-card {
-            background: var(--card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-            display: block;
-        }
-
-        .stat-label {
             font-size: 0.875rem;
             color: var(--text-light);
+            margin-top: 0.5rem;
         }
 
-        .matrix-container {
-            background: var(--card);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            margin-bottom: 4rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th {
-            background: #f1f5f9;
-            padding: 1rem 1.5rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-light);
-        }
-
-        td {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            vertical-align: top;
-            font-size: 0.875rem;
-        }
-
-        .highlight-col {
-            background: var(--accent-light);
-            font-weight: 600;
-        }
-
-        .findings-grid {
+        .main-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 2fr 1fr;
             gap: 2rem;
-            margin-bottom: 4rem;
         }
 
-        .finding-card {
+        .pulse-section {
             background: var(--card);
-            padding: 2rem;
             border-radius: 16px;
-            border-top: 4px solid var(--accent);
+            border: 1px solid var(--border);
+            padding: 2rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
         }
 
-        .finding-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
             color: var(--primary);
         }
 
-        .memo-box {
+        .pulse-card {
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .pulse-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .advisor-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .advisor-card {
             background: var(--primary);
             color: white;
-            padding: 3rem;
-            border-radius: 20px;
-            margin-top: 5rem;
+            padding: 1.5rem;
+            border-radius: 16px;
             position: relative;
-            overflow: hidden;
         }
 
-        .memo-box h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+        .advisor-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .advisor-card p {
+            font-size: 0.9375rem;
             opacity: 0.9;
-        }
-
-        .memo-text {
-            font-size: 1.5rem;
-            font-weight: 500;
-            line-height: 1.4;
+            margin-bottom: 1rem;
             font-style: italic;
         }
 
-        .memo-box::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-            font-size: 8rem;
-            opacity: 0.1;
-            font-family: serif;
+        .btn-action {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .legacy-section {
+            margin-top: 4rem;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .legacy-section:hover {
+            opacity: 1;
+        }
+
+        .matrix-mini {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8125rem;
+        }
+
+        .matrix-mini th {
+            text-align: left;
+            padding: 0.75rem;
+            background: #f1f5f9;
+        }
+
+        .matrix-mini td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
         }
 
         @media (max-width: 900px) {
-            .stats-grid, .findings-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
+            .main-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="brand">
-            <div class="brand-dot"></div>
-            MedInsight Intelligence
+            <div class="pulse-dot"></div>
+            Market Pulse Engine
         </div>
-        <div class="subtitle">Operations & Strategy Brief • Updated: April 23, 2026 (Live Pulse)</div>
+        <div class="live-status">System Status: Active • Loop: 3.3 Innermost</div>
     </nav>
 
     <div class="container">
-        <header class="hero">
-            <span class="badge">Strategic Intelligence</span>
-            <h1>Competitive Intelligence Brief</h1>
-            <p class="summary">Analysis of the conversational health education landscape and our operational "handoff" advantage.</p>
+        <header class="dashboard-header">
+            <h1>Intelligence Command Center</h1>
+            <div class="live-status">
+                <span>Last Sync: <strong>April 23, 2026 13:36</strong></span>
+                <span>•</span>
+                <span>Source: Web Pulse Scan (Reddit, News, Competitor Reviews)</span>
+            </div>
         </header>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-value">3</span>
-                <span class="stat-label">Core Competitors Analyzed</span>
+        <div class="main-grid">
+            <div class="pulse-section">
+                <div class="section-header">
+                    <h2>Real-Time Market Sentiment</h2>
+                    <span class="btn-action" style="background: #e2e8f0; color: var(--text-light);">Latest Updates</span>
+                </div>
+
+                <div class="pulse-card">
+                    <h3>The "Scripted" Crisis (Competitor: K Health)</h3>
+                    <p>Users are reporting high churn due to "bot-like" medical interactions. There is a growing demand for transparency in AI-to-Human handoffs. This validates our <strong>Clinician Brief</strong> strategy.</p>
+                </div>
+
+                <div class="pulse-card" style="border-left-color: #f59e0b;">
+                    <h3>Mental Health Complexity Gap (Competitor: Ada)</h3>
+                    <p>New user feedback indicates Ada's structured assessment fails to capture the nuances of health anxiety and depression, creating a "feature gap" we can exploit with specialized education flows.</p>
+                </div>
+
+                <div class="pulse-card" style="border-left-color: #ef4444;">
+                    <h3>Privacy Trust Deficit (Market Trend)</h3>
+                    <p>The ECRI 2026 report has identified AI hallucinations as the #1 health tech safety risk. Users are actively seeking platforms that cite sources (Mayo Clinic, etc.) rather than just giving answers.</p>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">100%</span>
-                <span class="stat-label">Privacy-First Commitment</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-value">Primary</span>
-                <span class="stat-label">Market Gap Exploited</span>
+
+            <div class="advisor-section">
+                <div class="advisor-card">
+                    <h2>Strategic Advisory</h2>
+                    <p>"Pivot communication from 'Symptom Checker' to 'Clinical Preparation.' Your biggest wedge is the fact that you empower users to speak to doctors, rather than trying to replace the doctor."</p>
+                    <a href="../strategic-pivot.md" class="btn-action">Read Full Memo</a>
+                </div>
+
+                <div class="advisor-card" style="background: #ffffff; border: 1px solid var(--border); color: var(--text);">
+                    <h2 style="color: var(--accent-blue);">Recommended Priority</h2>
+                    <p style="color: var(--text-light); font-style: normal;"><strong>Mental Health Bridge:</strong> Develop a specialized "Clinician Brief" for anxiety/depression to capture users frustrated with Ada's rigid logic.</p>
+                    <span class="btn-action" style="background: var(--accent-blue); color: white;">Queue Feature</span>
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title">Competitive Comparison Matrix</h2>
-        <div class="matrix-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Dimension</th>
-                        <th class="highlight-col">MedInsight AI</th>
-                        <th>Buoy Health</th>
-                        <th>K Health</th>
-                        <th>Ada Health</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Core Value Prop</strong></td>
-                        <td class="highlight-col">Conversational health education with a focus on clinical prep.</td>
-                        <td>Empathy-driven triage and disposition.</td>
-                        <td>Data-driven "people like you" insights and telehealth.</td>
-                        <td>Medically validated, comprehensive symptom assessment.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Brand Voice</strong></td>
-                        <td class="highlight-col">Professional, Polished, Confident.</td>
-                        <td>Friendly, Empathetic, Chatty.</td>
-                        <td>Efficient, Data-heavy, Clinical.</td>
-                        <td>Formal, Thorough, Systematic.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Key Feature</strong></td>
-                        <td class="highlight-col"><strong>The Clinician Brief</strong></td>
-                        <td>AI-driven "What to do" triage.</td>
-                        <td>"People like you" data matching.</td>
-                        <td>Global health knowledge base.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Actionable Step</strong></td>
-                        <td class="highlight-col">Document for your doctor.</td>
-                        <td>Recommendation for care level.</td>
-                        <td>Instant telehealth appointment.</td>
-                        <td>Condition list and care level.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h2 class="section-title">Strategic Findings</h2>
-        <div class="findings-grid">
-            <div class="finding-card">
-                <h3>The "Handoff" Gap</h3>
-                <p>While Buoy Health and Ada are excellent at identifying the issue, they fail at the handoff. Users are left with a diagnosis but no clear way to communicate it. We bridge this with the <strong>Clinician Brief</strong>.</p>
+        <div class="legacy-section">
+            <h2 class="section-title" style="font-size: 1rem; margin-bottom: 1rem;">Legacy Competitive Intelligence (Reference Only)</h2>
+            <div class="pulse-section" style="padding: 1.5rem; opacity: 0.8;">
+                <table class="matrix-mini">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>MedInsight AI</th>
+                            <th>Buoy Health</th>
+                            <th>K Health</th>
+                            <th>Ada Health</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Value Prop</td>
+                            <td>Clinical Prep</td>
+                            <td>Triage</td>
+                            <td>Data Insights</td>
+                            <td>Assessment</td>
+                        </tr>
+                        <tr>
+                            <td>Key Feature</td>
+                            <td><strong>Clinician Brief</strong></td>
+                            <td>Triage AI</td>
+                            <td>Data Matching</td>
+                            <td>Validation</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="finding-card">
-                <h3>Data vs. Privacy</h3>
-                <p>K Health requires significant personal data sharing for its "matching" logic. MedInsight’s "Privacy First" focus for teens on parents' insurance is a powerful, untapped differentiator.</p>
-            </div>
-            <div class="finding-card">
-                <h3>Education over Upselling</h3>
-                <p>Giants like K Health prioritize funneling users into their own telehealth services. We remain an independent educator, providing cited sources to help users navigate their existing care.</p>
-            </div>
-        </div>
-
-        <h2 class="section-title">Real-Time Market Pulse</h2>
-        <div class="findings-grid">
-            <div class="finding-card" style="border-top-color: #10b981;">
-                <h3>Emerging Gaps</h3>
-                <p><strong>K Health</strong> is seeing a spike in user frustration regarding "scripted" interactions and technical disconnections. <strong>Ada</strong> is struggling with mental health and complex pre-existing conditions.</p>
-            </div>
-            <div class="finding-card" style="border-top-color: #f59e0b;">
-                <h3>User Sentiment</h3>
-                <p>Users are increasingly wary of "black box" AI. The demand for <strong>transparency and source-backed clarity</strong> (our core strength) is at an all-time high as safety organizations warn against AI hallucinations.</p>
-            </div>
-            <div class="finding-card" style="border-top-color: #ef4444;">
-                <h3>Strategic Opportunity</h3>
-                <p>MedInsight should lean into <strong>human-in-the-loop preparation</strong>. By focusing on the "Clinician Brief," we address the primary user fear: that AI advice won't be taken seriously by real doctors.</p>
-            </div>
-        </div>
-
-        <div class="memo-box">
-            <h2>Board Memo Talking Point</h2>
-            <p class="memo-text">
-                "We analyzed major competitors and identified a critical market gap: the transition from AI insight to professional care. While others focus on triage, MedInsight AI exploits this gap with the Clinician Brief—empowering users to speak confidently to their doctors. Our differentiation isn't just better AI; it's a better clinical outcome for the user."
-            </p>
         </div>
     </div>
 </body>
