@@ -32,13 +32,11 @@
         h1 { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
         .status-bar { font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem; }
 
-        /* Scannable Tabs */
         .tabs-nav { display: flex; gap: 0.5rem; margin-bottom: 2rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; width: fit-content; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
         .tabs-nav::-webkit-scrollbar { display: none; }
         .tab-link { padding: 0.5rem 1.25rem; border: none; background: transparent; font-size: 0.875rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
         .tab-link.active { background: white; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
-        /* Card System */
         .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
         .card-title { font-size: 1rem; font-weight: 700; color: var(--primary); }
@@ -48,7 +46,7 @@
         .badge-caution { background: #ffedd5; color: #9a3412; }
         .badge-warning { background: #fef3c7; color: #92400e; }
         .badge-danger { background: #fee2e2; color: #991b1b; }
-        .badge-rank { background: #f1f5f9; color: var(--primary); border: 1px solid var(--border); }
+        .badge-signal { background: #f1f5f9; color: var(--text-light); border: 1px solid var(--border); }
 
         .content-body { font-size: 0.9375rem; color: var(--text); }
         .source-link { font-size: 0.75rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-top: 1rem; display: block; }
@@ -56,10 +54,6 @@
         .swot-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
         .swot-item { background: #f8fafc; padding: 0.75rem; border-radius: 8px; font-size: 0.8125rem; border-left: 3px solid var(--border); }
         .swot-item strong { display: block; font-size: 0.7rem; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.2rem; }
-
-        .advisor-box { background: var(--primary); color: white; padding: 1.5rem; border-radius: 12px; margin-top: 3rem; }
-        .advisor-box h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--success); margin-bottom: 0.5rem; }
-        .advisor-box p { font-size: 1.1rem; font-weight: 500; font-style: italic; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -74,18 +68,18 @@
 <body>
     <nav class="navbar">
         <div class="brand"><div class="pulse-dot"></div> MedInsight Intelligence</div>
-        <div class="status-bar">Sync: April 23, 2026 14:30</div>
+        <div class="status-bar">Sync: April 23, 2026 14:31</div>
     </nav>
 
     <div class="container">
         <header>
             <h1>Strategic Command Center</h1>
-            <p class="status-bar">Monitoring the Definitive 5 competitors in the digital health landscape.</p>
+            <p class="status-bar">Mapping the Definitive 5 Rivals with Real-Time Signal Strength.</p>
         </header>
 
         <div class="tabs-nav">
             <button class="tab-link active" onclick="openTab(event, 'medinsight')">MedInsight</button>
-            <button class="tab-link" onclick="openTab(event, 'overview')">Leaderboard</button>
+            <button class="tab-link" onclick="openTab(event, 'leaderboard')">Leaderboard</button>
             <button class="tab-link" onclick="openTab(event, 'ada')">Ada</button>
             <button class="tab-link" onclick="openTab(event, 'khealth')">K Health</button>
             <button class="tab-link" onclick="openTab(event, 'webmd')">WebMD</button>
@@ -93,36 +87,26 @@
             <button class="tab-link" onclick="openTab(event, 'buoy')">Buoy</button>
         </div>
 
-        <!-- MEDINSIGHT SELF-AUDIT -->
+        <!-- MEDINSIGHT -->
         <div id="medinsight" class="tab-content active">
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Top Strategic Wedge</span>
-                    <span class="badge badge-rank">Rank #1</span>
+                    <span class="card-title">MedInsight AI (Internal)</span>
+                    <span class="badge badge-signal">Signal: High</span>
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 23, 2026</div>
-                    <strong>The Clinician Brief:</strong> Our primary differentiator. We bridge the "triage-to-appointment" gap that even the giants (WebMD/Ada) ignore.
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Critical Authority Gap</span>
-                    <span class="badge badge-danger">Rank #1 Risk</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 23, 2026</div>
-                    <strong>Clinical Validation Scale:</strong> We lack the proprietary engines of Ada. Mitigation: Lean into transparency and PubMed citations to win on trust.
-                    <div style="margin-top: 1rem; padding: 0.75rem; background: #fff1f2; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid var(--danger);">
-                        <strong>Next Steps:</strong> Prioritize deep-linking to primary research for every major insight.
+                    <strong>Top Wedge:</strong> Clinician Brief (Preparation over Triage).
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Risk #1</strong>Clinical Scale Gap</div>
+                        <div class="swot-item"><strong>Risk #2</strong>One-Time Stickiness</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- LEADERBOARD -->
-        <div id="overview" class="tab-content">
+        <div id="leaderboard" class="tab-content">
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">Definitive 5 Leaderboard</span>
@@ -130,61 +114,14 @@
                 </div>
                 <div class="content-body">
                     <table>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Entity</th>
-                            <th style="text-align: center;">Trend</th>
-                            <th style="text-align: right;">Key Pulse</th>
-                        </tr>
-                        <tr>
-                            <td>#1</td>
-                            <td>Ada Health</td>
-                            <td style="text-align: center;">↔</td>
-                            <td style="text-align: right; font-size: 0.8rem;">Clinical Standard</td>
-                        </tr>
-                        <tr style="background: #f0f9ff;">
-                            <td><strong>#2</strong></td>
-                            <td><strong>MedInsight AI</strong></td>
-                            <td style="text-align: center; color: var(--success); font-weight: bold;">↑</td>
-                            <td style="text-align: right; font-size: 0.8rem;">Prep-Wedge Advantage</td>
-                        </tr>
-                        <tr>
-                            <td>#3</td>
-                            <td>K Health</td>
-                            <td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td>
-                            <td style="text-align: right; font-size: 0.8rem;">Service Reliability Lag</td>
-                        </tr>
-                        <tr>
-                            <td>#4</td>
-                            <td>WebMD</td>
-                            <td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td>
-                            <td style="text-align: right; font-size: 0.8rem;">Alarmist Fatigue</td>
-                        </tr>
-                        <tr>
-                            <td>#5</td>
-                            <td>Wysa</td>
-                            <td style="text-align: center;">↔</td>
-                            <td style="text-align: right; font-size: 0.8rem;">Empathetic Support</td>
-                        </tr>
-                        <tr>
-                            <td>#6</td>
-                            <td>Buoy Health</td>
-                            <td style="text-align: center;">↔</td>
-                            <td style="text-align: right; font-size: 0.8rem;">Corporate Pivot</td>
-                        </tr>
+                        <tr><th>Rank</th><th>Entity</th><th style="text-align: center;">Trend</th><th style="text-align: right;">Key Pulse</th></tr>
+                        <tr><td>#1</td><td>Ada Health</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Clinical Standard</td></tr>
+                        <tr style="background: #f0f9ff;"><td><strong>#2</strong></td><td><strong>MedInsight AI</strong></td><td style="text-align: center; color: var(--success); font-weight: bold;">↑</td><td style="text-align: right; font-size: 0.8rem;">Prep-Wedge Advantage</td></tr>
+                        <tr><td>#3</td><td>K Health</td><td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td><td style="text-align: right; font-size: 0.8rem;">Service Reliability Lag</td></tr>
+                        <tr><td>#4</td><td>WebMD</td><td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td><td style="text-align: right; font-size: 0.8rem;">Alarmist Fatigue</td></tr>
+                        <tr><td>#5</td><td>Wysa</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Empathetic Support</td></tr>
+                        <tr><td>#6</td><td>Buoy Health</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Corporate Pivot</td></tr>
                     </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Market Trend: The "Cyberchondria" Shift</span>
-                    <span class="badge badge-warning">Watch</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 23, 2026</div>
-                    Users are actively reporting "alarmist fatigue" from legacy checkers (WebMD). The market is moving toward "likely scenarios" and localized advice.
-                    <a href="https://home.ecri.org/blogs/ecri-news/misuse-of-ai-chatbots-tops-annual-list-of-health-technology-hazards" class="source-link" target="_blank">Source: ECRI 2026 Report →</a>
                 </div>
             </div>
         </div>
@@ -194,14 +131,37 @@
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">Ada Health</span>
-                    <span class="badge badge-success">Stable</span>
+                    <span class="badge badge-signal">Signal: High</span>
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
+                    The gold standard for diagnostic precision.
                     <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Diagnostic Precision</div>
+                        <div class="swot-item"><strong>Strength</strong>Precision</div>
                         <div class="swot-item"><strong>Weakness</strong>Clinical Rigidity</div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- K HEALTH (EXPANDED) -->
+        <div id="khealth" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">K Health</span>
+                    <span class="badge badge-signal">Signal: High</span>
+                </div>
+                <div class="content-body">
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
+                    Aggressive telehealth funnel using massive data matching.
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Strength</strong>Data Volume</div>
+                        <div class="swot-item"><strong>Weakness</strong>Service Stability</div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
+                        <strong>Pulse:</strong> Trustpilot sentiment shows a spike in "scripted" complaints and technical bugs causing chat disconnections.
+                    </div>
+                    <a href="https://www.trustpilot.com/review/khealth.com" class="source-link" target="_blank">View Trustpilot Pulse →</a>
                 </div>
             </div>
         </div>
@@ -211,17 +171,14 @@
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">WebMD</span>
-                    <span class="badge badge-danger">Falling Trust</span>
+                    <span class="badge badge-signal">Signal: High</span>
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
-                    The "Legacy Elephant." Massive database but high noise.
+                    The legacy traffic giant.
                     <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Unmatched Traffic</div>
+                        <div class="swot-item"><strong>Strength</strong>Brand Recognition</div>
                         <div class="swot-item"><strong>Weakness</strong>Alarmist Results</div>
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
-                        Users on Reddit/Health note that WebMD's symptom checker often jumps to "worst-case scenarios," leading to unnecessary panic (Cyberchondria).
                     </div>
                     <a href="https://www.google.com/search?q=webmd+symptom+checker+reviews+2026" class="source-link" target="_blank">View Pulse Data →</a>
                 </div>
@@ -233,29 +190,40 @@
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">Wysa</span>
-                    <span class="badge badge-success">Empathy Leader</span>
+                    <span class="badge badge-signal">Signal: Medium</span>
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
-                    Clinically validated AI for mental health support.
+                    Empathetic conversational AI for mental health.
                     <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Empathetic Tone</div>
-                        <div class="swot-item"><strong>Weakness</strong>Repetitive Scripting</div>
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
-                        Reviewers praise the "non-judgmental" tone but some find the CBT exercises repetitive for long-term users.
+                        <div class="swot-item"><strong>Strength</strong>Empathy</div>
+                        <div class="swot-item"><strong>Weakness</strong>Scripted Loops</div>
                     </div>
                     <a href="https://www.trustradius.com/products/wysa/reviews" class="source-link" target="_blank">View Pulse Data →</a>
                 </div>
             </div>
         </div>
 
-        <!-- K HEALTH & BUOY (Minimized for scannability) -->
-        <div id="khealth" class="tab-content">
-            <div class="card"><div class="card-title">K Health</div><p class="content-body">Billing disputes and technical bugs documented in April 2026.</p></div>
-        </div>
+        <!-- BUOY (EXPANDED) -->
         <div id="buoy" class="tab-content">
-            <div class="card"><div class="card-title">Buoy Health</div><p class="content-body">Focus has shifted heavily to B2B/Insurance care navigation.</p></div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Buoy Health</span>
+                    <span class="badge badge-signal">Signal: Low</span>
+                </div>
+                <div class="content-body">
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
+                    Empathy-driven navigator now pivoting toward enterprise B2B.
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Strength</strong>Clinical Tone</div>
+                        <div class="swot-item"><strong>Weakness</strong>Consumer Churn</div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
+                        <strong>Pulse:</strong> Low consumer news volume indicates a total focus on insurance/B2B partnerships rather than individual user acquisition.
+                    </div>
+                    <a href="https://pitchbook.com/profiles/company/150131-26" class="source-link" target="_blank">View Market Profile →</a>
+                </div>
+            </div>
         </div>
 
     </div>
