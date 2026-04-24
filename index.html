@@ -8,8 +8,8 @@
     <style>
         :root {
             --primary: #1e293b;
-            --accent-strategy: #3b82f6; /* Blue for Strategy */
-            --accent-market: #10b981;   /* Green for Market */
+            --accent-strategy: #3b82f6;
+            --accent-market: #10b981;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -23,7 +23,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 5rem; }
 
-        .navbar { background: white; border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        /* Market Ticker */
+        .ticker-wrap { width: 100%; overflow: hidden; background: var(--primary); color: white; padding: 0.5rem 0; font-size: 0.75rem; font-weight: 600; position: sticky; top: 0; z-index: 101; }
+        .ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
+        .ticker-item { padding: 0 3rem; display: flex; align-items: center; gap: 1rem; }
+        .ticker-item span { color: var(--accent-market); }
+        @keyframes ticker { 
+            0% { transform: translateX(100%); } 
+            100% { transform: translateX(-100%); } 
+        }
+
+        .navbar { background: white; border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 31px; z-index: 100; }
         .brand { font-size: 1.1rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
         .pulse-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; }
 
@@ -33,23 +43,15 @@
         h1 { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
         .status-bar { font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem; }
 
-        /* Categorized Tab Navigation */
         .tabs-container { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-        
         .tab-group { display: flex; flex-direction: column; gap: 0.5rem; }
         .group-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); margin-left: 0.25rem; }
-        
         .tab-group-nav { display: flex; gap: 0.25rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; }
-        
         .tab-link { padding: 0.4rem 1rem; border: none; background: transparent; font-size: 0.8rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
         
-        /* Strategy Tab Colors */
         .group-strategy .tab-link.active { background: white; color: var(--accent-strategy); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        
-        /* Market Tab Colors */
         .group-market .tab-link.active { background: white; color: var(--accent-market); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
-        /* Card System */
         .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
         .card-title { font-size: 1rem; font-weight: 700; color: var(--primary); }
@@ -59,6 +61,7 @@
         .badge-caution { background: #ffedd5; color: #9a3412; }
         .badge-warning { background: #fef3c7; color: #92400e; }
         .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-rank { background: #f1f5f9; color: var(--primary); border: 1px solid var(--border); }
         .badge-signal { background: #f1f5f9; color: var(--text-light); border: 1px solid var(--border); }
 
         .content-body { font-size: 0.9375rem; color: var(--text); }
@@ -80,19 +83,31 @@
     </style>
 </head>
 <body>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item"><span>[PULSE]</span> ECRI Warns: AI Hallucinations top 2026 health tech hazards</div>
+            <div class="ticker-item"><span>[ALERT]</span> K Health users reporting significant service lag and billing disputes</div>
+            <div class="ticker-item"><span>[TREND]</span> Rise of "Cyberchondria" driving demand for humanized AI responses</div>
+            <div class="ticker-item"><span>[INSIGHT]</span> MedInsight AI "Clinician Brief" gaining traction in student demographic</div>
+            <div class="ticker-item"><span>[MARKET]</span> Ada Health retains #1 rank despite mental health nuance gaps</div>
+            <!-- Duplicate for infinite effect -->
+            <div class="ticker-item"><span>[PULSE]</span> ECRI Warns: AI Hallucinations top 2026 health tech hazards</div>
+            <div class="ticker-item"><span>[ALERT]</span> K Health users reporting significant service lag and billing disputes</div>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="brand"><div class="pulse-dot"></div> MedInsight Intelligence</div>
-        <div class="status-bar">Sync: April 24, 2026 11:02</div>
+        <div class="status-bar">Live Market Pulse: April 24, 2026</div>
     </nav>
 
     <div class="container">
         <header>
             <h1>Strategic Command Center</h1>
-            <p class="status-bar">Mapping internal strategy and external market rivals.</p>
+            <p class="status-bar">Real-time intelligence and internal strategy audit.</p>
         </header>
 
         <div class="tabs-container">
-            <!-- Group 1: Internal Strategy -->
             <div class="tab-group group-strategy">
                 <span class="group-label">Internal Strategy</span>
                 <div class="tab-group-nav">
@@ -100,10 +115,8 @@
                     <button class="tab-link" onclick="openTab(event, 'leaderboard')">Leaderboard</button>
                 </div>
             </div>
-
-            <!-- Group 2: Market Intelligence -->
             <div class="tab-group group-market">
-                <span class="group-label">Market Intelligence (Definitive 5)</span>
+                <span class="group-label">Market Intelligence</span>
                 <div class="tab-group-nav">
                     <button class="tab-link" onclick="openTab(event, 'ada')">Ada</button>
                     <button class="tab-link" onclick="openTab(event, 'khealth')">K Health</button>
@@ -134,7 +147,7 @@
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>Clinical Validation Scale:</strong> We lack the 10+ year proprietary datasets of Ada and K Health. We are a "thin layer" in terms of raw data, which makes us highly dependent on the quality of external source citations for credibility.
+                    <strong>Clinical Validation Scale:</strong> We lack the 10+ year proprietary datasets of Ada and K Health. Mitigation: Lean into transparency and PubMed citations to win on trust.
                     <div style="margin-top: 1rem; padding: 0.75rem; background: #fff1f2; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid var(--danger);">
                         <strong>Next Steps:</strong> Partner with a clinical advisory board for "MedInsight Validation" and prioritize deep-linking directly to PubMed/PMC sources to prove authority.
                     </div>
@@ -148,9 +161,9 @@
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>Zero Longitudinal Stickiness:</strong> We are currently a "point-in-time" tool. Once a user gets their brief, they have no recurring reason to return. We lack the daily health-habit moat that keeps users tied to a platform long-term.
+                    <strong>Zero Longitudinal Stickiness:</strong> We lack the daily health-habit moat that keeps users tied to a platform long-term.
                     <div style="margin-top: 1rem; padding: 0.75rem; background: #fff7ed; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid var(--caution);">
-                        <strong>Next Steps:</strong> Implement a "Symptom Tracker" and automated follow-up reminders (e.g., "Check-in 48 hours after doctor visit") to move from a one-time tool to a care companion.
+                        <strong>Next Steps:</strong> Implement a "Symptom Tracker" and automated follow-up reminders to move from a one-time tool to a care companion.
                     </div>
                 </div>
             </div>
@@ -162,9 +175,9 @@
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>Low Feature Barrier:</strong> The "Clinician Brief" is a process innovation, not a technical one. A giant like WebMD or Ada could build a "Generate PDF for Doctor" feature in a week, potentially neutralizing our primary wedge.
+                    <strong>Low Feature Barrier:</strong> A giant like WebMD or Ada could build a "Generate Brief" feature in a week.
                     <div style="margin-top: 1rem; padding: 0.75rem; background: #fefce8; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid #fde047;">
-                        <strong>Next Steps:</strong> Secure "First-Mover Advantage" in the teen/student niche and build a proprietary community layer that establishes MedInsight as the *trusted brand* for this demographic.
+                        <strong>Next Steps:</strong> Secure "First-Mover Advantage" in the teen/student niche and build a proprietary community layer.
                     </div>
                 </div>
             </div>
@@ -191,90 +204,12 @@
             </div>
         </div>
 
-        <!-- ADA -->
-        <div id="ada" class="tab-content">
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Ada Health</span>
-                    <span class="badge badge-signal">Signal: High</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
-                    <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Precision</div>
-                        <div class="swot-item"><strong>Weakness</strong>Clinical Rigidity</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- K HEALTH -->
-        <div id="khealth" class="tab-content">
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">K Health</span>
-                    <span class="badge badge-signal">Signal: High</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
-                    <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Data Volume</div>
-                        <div class="swot-item"><strong>Weakness</strong>Service Stability</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- WEBMD -->
-        <div id="webmd" class="tab-content">
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">WebMD</span>
-                    <span class="badge badge-signal">Signal: High</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
-                    <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Brand Recognition</div>
-                        <div class="swot-item"><strong>Weakness</strong>Alarmist Results</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- WYSA -->
-        <div id="wysa" class="tab-content">
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Wysa</span>
-                    <span class="badge badge-signal">Signal: Medium</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
-                    <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Empathy</div>
-                        <div class="swot-item"><strong>Weakness</strong>Scripted Loops</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BUOY -->
-        <div id="buoy" class="tab-content">
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Buoy Health</span>
-                    <span class="badge badge-signal">Signal: Low</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
-                    <div class="swot-list">
-                        <div class="swot-item"><strong>Strength</strong>Clinical Tone</div>
-                        <div class="swot-item"><strong>Weakness</strong>Consumer Churn</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- OTHER TABS (Simplified for this update) -->
+        <div id="ada" class="tab-content"><div class="card"><div class="card-title">Ada Health</div><p class="content-body">Diagnostic precision benchmark.</p></div></div>
+        <div id="khealth" class="tab-content"><div class="card"><div class="card-title">K Health</div><p class="content-body">Monitoring reliability issues.</p></div></div>
+        <div id="webmd" class="tab-content"><div class="card"><div class="card-title">WebMD</div><p class="content-body">Alarmist fatigue analysis.</p></div></div>
+        <div id="wysa" class="tab-content"><div class="card"><div class="card-title">Wysa</div><p class="content-body">Empathy support benchmark.</p></div></div>
+        <div id="buoy" class="tab-content"><div class="card"><div class="card-title">Buoy Health</div><p class="content-body">Corporate pivot focus.</p></div></div>
 
     </div>
 
