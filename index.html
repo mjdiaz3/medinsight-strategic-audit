@@ -8,7 +8,8 @@
     <style>
         :root {
             --primary: #1e293b;
-            --accent: #3b82f6;
+            --accent-strategy: #3b82f6; /* Blue for Strategy */
+            --accent-market: #10b981;   /* Green for Market */
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -26,17 +27,29 @@
         .brand { font-size: 1.1rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
         .pulse-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; }
 
-        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
 
         header { margin-bottom: 2rem; }
         h1 { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
         .status-bar { font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem; }
 
-        .tabs-nav { display: flex; gap: 0.5rem; margin-bottom: 2rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; width: fit-content; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
-        .tabs-nav::-webkit-scrollbar { display: none; }
-        .tab-link { padding: 0.5rem 1.25rem; border: none; background: transparent; font-size: 0.875rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
-        .tab-link.active { background: white; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        /* Categorized Tab Navigation */
+        .tabs-container { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+        
+        .tab-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .group-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); margin-left: 0.25rem; }
+        
+        .tab-group-nav { display: flex; gap: 0.25rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; }
+        
+        .tab-link { padding: 0.4rem 1rem; border: none; background: transparent; font-size: 0.8rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+        
+        /* Strategy Tab Colors */
+        .group-strategy .tab-link.active { background: white; color: var(--accent-strategy); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        
+        /* Market Tab Colors */
+        .group-market .tab-link.active { background: white; color: var(--accent-market); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
+        /* Card System */
         .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
         .card-title { font-size: 1rem; font-weight: 700; color: var(--primary); }
@@ -49,7 +62,7 @@
         .badge-signal { background: #f1f5f9; color: var(--text-light); border: 1px solid var(--border); }
 
         .content-body { font-size: 0.9375rem; color: var(--text); }
-        .source-link { font-size: 0.75rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-top: 1rem; display: block; }
+        .source-link { font-size: 0.75rem; color: var(--accent-strategy); text-decoration: none; font-weight: 600; margin-top: 1rem; display: block; }
 
         .swot-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
         .swot-item { background: #f8fafc; padding: 0.75rem; border-radius: 8px; font-size: 0.8125rem; border-left: 3px solid var(--border); }
@@ -58,44 +71,58 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        th { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border); color: var(--text-light); font-size: 0.7rem; text-transform: uppercase; }
         td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
 
+        @media (max-width: 900px) { .tabs-container { flex-direction: column; gap: 1rem; } }
         @media (max-width: 600px) { .swot-list { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="brand"><div class="pulse-dot"></div> MedInsight Intelligence</div>
-        <div class="status-bar">Sync: April 23, 2026 14:31</div>
+        <div class="status-bar">Sync: April 24, 2026 11:02</div>
     </nav>
 
     <div class="container">
         <header>
             <h1>Strategic Command Center</h1>
-            <p class="status-bar">Mapping the Definitive 5 Rivals with Real-Time Signal Strength.</p>
+            <p class="status-bar">Mapping internal strategy and external market rivals.</p>
         </header>
 
-        <div class="tabs-nav">
-            <button class="tab-link active" onclick="openTab(event, 'medinsight')">MedInsight</button>
-            <button class="tab-link" onclick="openTab(event, 'leaderboard')">Leaderboard</button>
-            <button class="tab-link" onclick="openTab(event, 'ada')">Ada</button>
-            <button class="tab-link" onclick="openTab(event, 'khealth')">K Health</button>
-            <button class="tab-link" onclick="openTab(event, 'webmd')">WebMD</button>
-            <button class="tab-link" onclick="openTab(event, 'wysa')">Wysa</button>
-            <button class="tab-link" onclick="openTab(event, 'buoy')">Buoy</button>
+        <div class="tabs-container">
+            <!-- Group 1: Internal Strategy -->
+            <div class="tab-group group-strategy">
+                <span class="group-label">Internal Strategy</span>
+                <div class="tab-group-nav">
+                    <button class="tab-link active" onclick="openTab(event, 'medinsight')">MedInsight</button>
+                    <button class="tab-link" onclick="openTab(event, 'leaderboard')">Leaderboard</button>
+                </div>
+            </div>
+
+            <!-- Group 2: Market Intelligence -->
+            <div class="tab-group group-market">
+                <span class="group-label">Market Intelligence (Definitive 5)</span>
+                <div class="tab-group-nav">
+                    <button class="tab-link" onclick="openTab(event, 'ada')">Ada</button>
+                    <button class="tab-link" onclick="openTab(event, 'khealth')">K Health</button>
+                    <button class="tab-link" onclick="openTab(event, 'webmd')">WebMD</button>
+                    <button class="tab-link" onclick="openTab(event, 'wysa')">Wysa</button>
+                    <button class="tab-link" onclick="openTab(event, 'buoy')">Buoy</button>
+                </div>
+            </div>
         </div>
 
-        <!-- MEDINSIGHT -->
+        <!-- MEDINSIGHT (Internal) -->
         <div id="medinsight" class="tab-content active">
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">MedInsight AI (Internal)</span>
+                    <span class="card-title">MedInsight AI (Internal Audit)</span>
                     <span class="badge badge-signal">Signal: High</span>
                 </div>
                 <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 23, 2026</div>
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
                     <strong>Top Wedge:</strong> Clinician Brief (Preparation over Triage).
                     <div class="swot-list">
                         <div class="swot-item"><strong>Risk #1</strong>Clinical Scale Gap</div>
@@ -109,8 +136,8 @@
         <div id="leaderboard" class="tab-content">
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Definitive 5 Leaderboard</span>
-                    <span class="badge badge-success">April 2026</span>
+                    <span class="card-title">Strategic Leaderboard</span>
+                    <span class="badge badge-success">Active Pulse</span>
                 </div>
                 <div class="content-body">
                     <table>
@@ -134,8 +161,7 @@
                     <span class="badge badge-signal">Signal: High</span>
                 </div>
                 <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
-                    The gold standard for diagnostic precision.
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Precision</div>
                         <div class="swot-item"><strong>Weakness</strong>Clinical Rigidity</div>
@@ -144,7 +170,7 @@
             </div>
         </div>
 
-        <!-- K HEALTH (EXPANDED) -->
+        <!-- K HEALTH -->
         <div id="khealth" class="tab-content">
             <div class="card">
                 <div class="card-header">
@@ -152,16 +178,11 @@
                     <span class="badge badge-signal">Signal: High</span>
                 </div>
                 <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
-                    Aggressive telehealth funnel using massive data matching.
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Data Volume</div>
                         <div class="swot-item"><strong>Weakness</strong>Service Stability</div>
                     </div>
-                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
-                        <strong>Pulse:</strong> Trustpilot sentiment shows a spike in "scripted" complaints and technical bugs causing chat disconnections.
-                    </div>
-                    <a href="https://www.trustpilot.com/review/khealth.com" class="source-link" target="_blank">View Trustpilot Pulse →</a>
                 </div>
             </div>
         </div>
@@ -174,13 +195,11 @@
                     <span class="badge badge-signal">Signal: High</span>
                 </div>
                 <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
-                    The legacy traffic giant.
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Brand Recognition</div>
                         <div class="swot-item"><strong>Weakness</strong>Alarmist Results</div>
                     </div>
-                    <a href="https://www.google.com/search?q=webmd+symptom+checker+reviews+2026" class="source-link" target="_blank">View Pulse Data →</a>
                 </div>
             </div>
         </div>
@@ -193,18 +212,16 @@
                     <span class="badge badge-signal">Signal: Medium</span>
                 </div>
                 <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
-                    Empathetic conversational AI for mental health.
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Empathy</div>
                         <div class="swot-item"><strong>Weakness</strong>Scripted Loops</div>
                     </div>
-                    <a href="https://www.trustradius.com/products/wysa/reviews" class="source-link" target="_blank">View Pulse Data →</a>
                 </div>
             </div>
         </div>
 
-        <!-- BUOY (EXPANDED) -->
+        <!-- BUOY -->
         <div id="buoy" class="tab-content">
             <div class="card">
                 <div class="card-header">
@@ -212,16 +229,11 @@
                     <span class="badge badge-signal">Signal: Low</span>
                 </div>
                 <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 23, 2026</div>
-                    Empathy-driven navigator now pivoting toward enterprise B2B.
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Last Verified: April 24, 2026</div>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Clinical Tone</div>
                         <div class="swot-item"><strong>Weakness</strong>Consumer Churn</div>
                     </div>
-                    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-light);">
-                        <strong>Pulse:</strong> Low consumer news volume indicates a total focus on insurance/B2B partnerships rather than individual user acquisition.
-                    </div>
-                    <a href="https://pitchbook.com/profiles/company/150131-26" class="source-link" target="_blank">View Market Profile →</a>
                 </div>
             </div>
         </div>
