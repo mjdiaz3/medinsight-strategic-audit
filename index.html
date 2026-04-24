@@ -23,7 +23,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 5rem; }
 
-        /* Market Ticker */
         .ticker-wrap { width: 100%; overflow: hidden; background: var(--primary); color: white; padding: 0.5rem 0; font-size: 0.75rem; font-weight: 600; position: sticky; top: 0; z-index: 101; }
         .ticker { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
         .ticker-item { padding: 0 3rem; display: flex; align-items: center; gap: 1rem; }
@@ -45,7 +44,6 @@
         .group-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); margin-left: 0.25rem; }
         .tab-group-nav { display: flex; gap: 0.25rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; }
         .tab-link { padding: 0.4rem 1rem; border: none; background: transparent; font-size: 0.8rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; position: relative; }
-        
         .tab-link.has-update::after { content: ''; position: absolute; top: 2px; right: 2px; width: 6px; height: 6px; background: var(--danger); border-radius: 50%; border: 1px solid white; }
 
         .group-strategy .tab-link.active { background: white; color: var(--accent-strategy); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -82,30 +80,17 @@
     </style>
 </head>
 <body>
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <div class="ticker-item"><span>[PULSE]</span> ECRI Warns: AI Hallucinations top 2026 health tech hazards</div>
-            <div class="ticker-item"><span>[ALERT]</span> K Health users reporting significant service lag and billing disputes</div>
-            <div class="ticker-item"><span>[TREND]</span> Rise of "Cyberchondria" driving demand for humanized AI responses</div>
-            <div class="ticker-item"><span>[INSIGHT]</span> MedInsight AI "Clinician Brief" gaining traction in student demographic</div>
-            <div class="ticker-item"><span>[MARKET]</span> Ada Health retains #1 rank despite mental health nuance gaps</div>
-            <!-- Duplicate -->
-            <div class="ticker-item"><span>[PULSE]</span> ECRI Warns: AI Hallucinations top 2026 health tech hazards</div>
-            <div class="ticker-item"><span>[ALERT]</span> K Health users reporting significant service lag and billing disputes</div>
-        </div>
-    </div>
+    <div class="ticker-wrap"><div class="ticker">
+        <div class="ticker-item"><span>[PULSE]</span> ECRI Warns: AI Hallucinations top 2026 health tech hazards</div>
+        <div class="ticker-item"><span>[ALERT]</span> K Health users reporting significant service lag and billing disputes</div>
+        <div class="ticker-item"><span>[TREND]</span> Rise of "Cyberchondria" driving demand for humanized AI responses</div>
+        <div class="ticker-item"><span>[INSIGHT]</span> MedInsight AI "Clinician Brief" gaining traction in student demographic</div>
+        <div class="ticker-item"><span>[MARKET]</span> Ada Health retains #1 rank despite mental health nuance gaps</div>
+    </div></div>
 
-    <nav class="navbar">
-        <div class="brand"><div class="pulse-dot"></div> MedInsight Intelligence</div>
-        <div class="status-bar">Live Intelligence Loop: April 24, 2026</div>
-    </nav>
+    <nav class="navbar"><div class="brand"><div class="pulse-dot"></div> MedInsight Intelligence</div></nav>
 
     <div class="container">
-        <header>
-            <h1>Strategic Command Center</h1>
-            <p class="status-bar">Real-time intelligence feed. Red dots indicate new unread market pulses.</p>
-        </header>
-
         <div class="tabs-container">
             <div class="tab-group group-strategy">
                 <span class="group-label">Internal Strategy</span>
@@ -126,29 +111,13 @@
             </div>
         </div>
 
-        <!-- MEDINSIGHT (Internal) -->
+        <!-- MEDINSIGHT -->
         <div id="medinsight" class="tab-content active">
             <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Top Strategic Wedge</span>
-                    <span class="badge badge-rank">Rank #1</span>
-                </div>
+                <div class="card-header"><span class="card-title">Top Strategic Wedge</span><span class="badge badge-rank">Rank #1</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>The Clinician Brief:</strong> Our primary differentiator. We bridge the "triage-to-appointment" gap that even the giants (WebMD/Ada) ignore.
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Critical Authority Gap</span>
-                    <span class="badge badge-danger">Rank #1 Risk</span>
-                </div>
-                <div class="content-body">
-                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>Clinical Validation Scale:</strong> Mitigation: Lean into transparency and PubMed citations to win on trust.
-                    <div style="margin-top: 1rem; padding: 0.75rem; background: #fff1f2; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid var(--danger);">
-                        <strong>Next Steps:</strong> Partner with clinical boards and prioritize deep-linking directly to PubMed/PMC sources.
-                    </div>
+                    <strong>The Clinician Brief:</strong> Our primary differentiator. We bridge the "triage-to-appointment" gap.
                 </div>
             </div>
         </div>
@@ -156,16 +125,12 @@
         <!-- LEADERBOARD -->
         <div id="leaderboard" class="tab-content">
             <div class="card">
-                <div class="card-header"><span class="card-title">Strategic Leaderboard</span><span class="badge badge-success">Update: MedInsight #2</span></div>
+                <div class="card-header"><span class="card-title">Strategic Leaderboard</span><span class="badge badge-success">Active Pulse</span></div>
                 <div class="content-body">
                     <table>
                         <tr><th>Rank</th><th>Entity</th><th style="text-align: center;">Trend</th><th style="text-align: right;">Key Pulse</th></tr>
                         <tr><td>#1</td><td>Ada Health</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Clinical Standard</td></tr>
                         <tr style="background: #f0f9ff;"><td><strong>#2</strong></td><td><strong>MedInsight AI</strong></td><td style="text-align: center; color: var(--success); font-weight: bold;">↑</td><td style="text-align: right; font-size: 0.8rem;">Prep-Wedge Advantage</td></tr>
-                        <tr><td>#3</td><td>K Health</td><td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td><td style="text-align: right; font-size: 0.8rem;">Service Reliability Lag</td></tr>
-                        <tr><td>#4</td><td>WebMD</td><td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td><td style="text-align: right; font-size: 0.8rem;">Alarmist Fatigue</td></tr>
-                        <tr><td>#5</td><td>Wysa</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Empathetic Support</td></tr>
-                        <tr><td>#6</td><td>Buoy Health</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Corporate Pivot</td></tr>
                     </table>
                 </div>
             </div>
@@ -177,7 +142,7 @@
                 <div class="card-header"><span class="card-title">Ada Health</span><span class="badge badge-signal">Signal: High</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">NEW PULSE: April 24, 2026</div>
-                    <p>Ada is showing a critical gap in mental health nuance—triage results are staying strictly clinical, missing the "emotional bridge" teens need.</p>
+                    <p>Ada is showing a critical gap in mental health nuance—missing the "emotional bridge" teens need.</p>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Precision</div>
                         <div class="swot-item"><strong>Weakness</strong>Rigidity</div>
@@ -192,7 +157,7 @@
                 <div class="card-header"><span class="card-title">K Health</span><span class="badge badge-signal">Signal: High</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">NEW PULSE: April 24, 2026</div>
-                    <p>Reports of technical lag in the AI-chat handoff to human doctors. User sentiment dropping due to wait times.</p>
+                    <p>Reports of technical lag in the AI-chat handoff to human doctors. User sentiment dropping.</p>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Data Volume</div>
                         <div class="swot-item"><strong>Weakness</strong>Service Lag</div>
@@ -207,7 +172,7 @@
                 <div class="card-header"><span class="card-title">WebMD</span><span class="badge badge-signal">Signal: High</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">NEW PULSE: April 24, 2026</div>
-                    <p>Cyberchondria fatigue is hitting a peak. Users are searching for "Calm alternatives" to WebMD.</p>
+                    <p>Cyberchondria fatigue is hitting a peak. Users searching for calm alternatives.</p>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Traffic</div>
                         <div class="swot-item"><strong>Weakness</strong>Fear Factor</div>
@@ -216,10 +181,37 @@
             </div>
         </div>
 
-        <!-- WYSA -->
-        <div id="wysa" class="tab-content"><div class="card"><div class="card-title">Wysa</div><p class="content-body">Steady signal. Empathy leader in the mental health space.</p></div></div>
-        <!-- BUOY -->
-        <div id="buoy" class="tab-content"><div class="card"><div class="card-title">Buoy Health</div><p class="content-body">Continuing B2B/Insurance focus. Low consumer signal volume.</p></div></div>
+        <!-- WYSA (RESTORED) -->
+        <div id="wysa" class="tab-content">
+            <div class="card">
+                <div class="card-header"><span class="card-title">Wysa</span><span class="badge badge-signal">Signal: Medium</span></div>
+                <div class="content-body">
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
+                    <p>Clinically validated AI for mental health support. Empathetic tone is the industry benchmark.</p>
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Strength</strong>Empathy Tone</div>
+                        <div class="swot-item"><strong>Weakness</strong>Repetitive Loops</div>
+                    </div>
+                    <a href="https://www.trustradius.com/products/wysa/reviews" class="source-link" target="_blank">View Pulse Data →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUOY (RESTORED) -->
+        <div id="buoy" class="tab-content">
+            <div class="card">
+                <div class="card-header"><span class="card-title">Buoy Health</span><span class="badge badge-signal">Signal: Low</span></div>
+                <div class="content-body">
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
+                    <p>Navigational AI pivoting heavily to B2B/Insurance. Consumer signal remains low volume.</p>
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Strength</strong>B2B Strategy</div>
+                        <div class="swot-item"><strong>Weakness</strong>Consumer Buzz</div>
+                    </div>
+                    <a href="https://pitchbook.com/profiles/company/150131-26" class="source-link" target="_blank">View Market Profile →</a>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -236,8 +228,6 @@
             }
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
-            
-            // Clear notification dot on click
             evt.currentTarget.classList.remove("has-update");
         }
     </script>
