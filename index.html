@@ -45,6 +45,8 @@
         .group-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); margin-left: 0.25rem; }
         .tab-group-nav { display: flex; gap: 0.25rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; }
         .tab-link { padding: 0.4rem 1rem; border: none; background: transparent; font-size: 0.8rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; position: relative; }
+        
+        /* Notification Dot */
         .tab-link.has-update::after { content: ''; position: absolute; top: 2px; right: 2px; width: 6px; height: 6px; background: var(--danger); border-radius: 50%; border: 1px solid white; }
 
         .group-strategy .tab-link.active { background: white; color: var(--accent-strategy); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -94,7 +96,7 @@
     <div class="container">
         <header>
             <h1>Strategic Command Center</h1>
-            <p class="status-bar">Mapping internal strategy and external market rivals.</p>
+            <p class="status-bar">Real-time intelligence feed. Red dots signify unread market pulses.</p>
         </header>
 
         <div class="tabs-container">
@@ -102,22 +104,22 @@
                 <span class="group-label">Internal Strategy</span>
                 <div class="tab-group-nav">
                     <button class="tab-link active" onclick="openTab(event, 'medinsight')">MedInsight</button>
-                    <button class="tab-link has-update" onclick="openTab(event, 'leaderboard')">Leaderboard</button>
+                    <button id="nav-leaderboard" class="tab-link has-update" onclick="openTab(event, 'leaderboard')">Leaderboard</button>
                 </div>
             </div>
             <div class="tab-group group-market">
                 <span class="group-label">Market Intelligence</span>
                 <div class="tab-group-nav">
-                    <button class="tab-link has-update" onclick="openTab(event, 'ada')">Ada</button>
-                    <button class="tab-link has-update" onclick="openTab(event, 'khealth')">K Health</button>
-                    <button class="tab-link has-update" onclick="openTab(event, 'webmd')">WebMD</button>
-                    <button class="tab-link" onclick="openTab(event, 'wysa')">Wysa</button>
-                    <button class="tab-link" onclick="openTab(event, 'buoy')">Buoy</button>
+                    <button id="nav-ada" class="tab-link has-update" onclick="openTab(event, 'ada')">Ada</button>
+                    <button id="nav-khealth" class="tab-link has-update" onclick="openTab(event, 'khealth')">K Health</button>
+                    <button id="nav-webmd" class="tab-link has-update" onclick="openTab(event, 'webmd')">WebMD</button>
+                    <button id="nav-wysa" class="tab-link" onclick="openTab(event, 'wysa')">Wysa</button>
+                    <button id="nav-buoy" class="tab-link" onclick="openTab(event, 'buoy')">Buoy</button>
                 </div>
             </div>
         </div>
 
-        <!-- MEDINSIGHT (SELF-AUDIT & NEXT STEPS) -->
+        <!-- MEDINSIGHT -->
         <div id="medinsight" class="tab-content active">
             <div class="card">
                 <div class="card-header"><span class="card-title">Top Strategic Wedge</span><span class="badge badge-rank">Rank #1</span></div>
@@ -126,34 +128,31 @@
                     <strong>The Clinician Brief:</strong> Our primary differentiator. We bridge the "triage-to-appointment" gap.
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-header"><span class="card-title">Critical Authority Gap</span><span class="badge badge-danger">Rank #1 Risk</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>Clinical Validation Scale:</strong> We lack proprietary datasets.
+                    <strong>Clinical Validation Scale:</strong> Partner with clinical boards and prioritize deep-linking to PubMed/PMC sources.
                     <div style="margin-top: 1rem; padding: 0.75rem; background: #fff1f2; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid var(--danger);">
-                        <strong>Next Steps:</strong> Partner with a clinical advisory board and prioritize deep-linking to PubMed/PMC sources.
+                        <strong>Next Steps:</strong> Partner with a clinical advisory board and prioritize deep-linking directly to PubMed/PMC sources.
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-header"><span class="card-title">Engagement Vulnerability</span><span class="badge badge-caution">Rank #2 Risk</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>Zero Longitudinal Stickiness:</strong> No recurring reason to return.
+                    <strong>Zero Longitudinal Stickiness:</strong> mitigation via tracker.
                     <div style="margin-top: 1rem; padding: 0.75rem; background: #fff7ed; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid var(--warning);">
                         <strong>Next Steps:</strong> Implement a "Symptom Tracker" and automated follow-up reminders.
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-header"><span class="card-title">The "Moat" Problem</span><span class="badge badge-warning">Rank #3 Risk</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>Low Feature Barrier:</strong> Process innovation can be copied.
+                    <strong>Low Feature Barrier:</strong> mitigation via branding.
                     <div style="margin-top: 1rem; padding: 0.75rem; background: #fefce8; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid #fde047;">
                         <strong>Next Steps:</strong> Secure "First-Mover Advantage" in the teen niche and build community.
                     </div>
@@ -233,7 +232,6 @@
                 <div class="card-header"><span class="card-title">Wysa</span><span class="badge badge-signal">Signal: Medium</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <p>Empathetic tone is the industry benchmark.</p>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>Empathy Tone</div>
                         <div class="swot-item"><strong>Weakness</strong>Repetitive</div>
@@ -249,7 +247,6 @@
                 <div class="card-header"><span class="card-title">Buoy Health</span><span class="badge badge-signal">Signal: Low</span></div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <p>Navigational AI pivoting heavily to B2B.</p>
                     <div class="swot-list">
                         <div class="swot-item"><strong>Strength</strong>B2B Strategy</div>
                         <div class="swot-item"><strong>Weakness</strong>Consumer Buzz</div>
@@ -273,8 +270,22 @@
             }
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            
+            // Persist the 'read' state
             evt.currentTarget.classList.remove("has-update");
+            localStorage.setItem('read_' + tabName, 'true');
         }
+
+        // Apply read states on load
+        window.onload = function() {
+            const tabs = ['leaderboard', 'ada', 'khealth', 'webmd', 'wysa', 'buoy'];
+            tabs.forEach(tab => {
+                if (localStorage.getItem('read_' + tab) === 'true') {
+                    const el = document.getElementById('nav-' + tab);
+                    if (el) el.classList.remove('has-update');
+                }
+            });
+        };
     </script>
 </body>
 </html>
