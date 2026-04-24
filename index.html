@@ -44,10 +44,8 @@
         .tab-group { display: flex; flex-direction: column; gap: 0.5rem; }
         .group-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); margin-left: 0.25rem; }
         .tab-group-nav { display: flex; gap: 0.25rem; background: #e2e8f0; padding: 0.25rem; border-radius: 8px; }
-        
         .tab-link { padding: 0.4rem 1rem; border: none; background: transparent; font-size: 0.8rem; font-weight: 600; color: var(--text-light); cursor: pointer; border-radius: 6px; transition: all 0.2s; white-space: nowrap; position: relative; }
         
-        /* Notification Dot */
         .tab-link.has-update::after { content: ''; position: absolute; top: 2px; right: 2px; width: 6px; height: 6px; background: var(--danger); border-radius: 50%; border: 1px solid white; }
 
         .group-strategy .tab-link.active { background: white; color: var(--accent-strategy); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -62,10 +60,15 @@
         .badge-caution { background: #ffedd5; color: #9a3412; }
         .badge-warning { background: #fef3c7; color: #92400e; }
         .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-rank { background: #f1f5f9; color: var(--primary); border: 1px solid var(--border); }
         .badge-signal { background: #f1f5f9; color: var(--text-light); border: 1px solid var(--border); }
 
         .content-body { font-size: 0.9375rem; color: var(--text); }
         .source-link { font-size: 0.75rem; color: var(--accent-strategy); text-decoration: none; font-weight: 600; margin-top: 1rem; display: block; }
+
+        .swot-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .swot-item { background: #f8fafc; padding: 0.75rem; border-radius: 8px; font-size: 0.8125rem; border-left: 3px solid var(--border); }
+        .swot-item strong { display: block; font-size: 0.7rem; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.2rem; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -75,6 +78,7 @@
         td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
 
         @media (max-width: 900px) { .tabs-container { flex-direction: column; gap: 1rem; } }
+        @media (max-width: 600px) { .swot-list { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -131,7 +135,20 @@
                 </div>
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
-                    <strong>The Clinician Brief:</strong> Bridge the "triage-to-appointment" gap.
+                    <strong>The Clinician Brief:</strong> Our primary differentiator. We bridge the "triage-to-appointment" gap that even the giants (WebMD/Ada) ignore.
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Critical Authority Gap</span>
+                    <span class="badge badge-danger">Rank #1 Risk</span>
+                </div>
+                <div class="content-body">
+                    <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Verified: April 24, 2026</div>
+                    <strong>Clinical Validation Scale:</strong> Mitigation: Lean into transparency and PubMed citations to win on trust.
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: #fff1f2; border-radius: 8px; font-size: 0.85rem; border-left: 3px solid var(--danger);">
+                        <strong>Next Steps:</strong> Partner with clinical boards and prioritize deep-linking directly to PubMed/PMC sources.
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,6 +163,9 @@
                         <tr><td>#1</td><td>Ada Health</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Clinical Standard</td></tr>
                         <tr style="background: #f0f9ff;"><td><strong>#2</strong></td><td><strong>MedInsight AI</strong></td><td style="text-align: center; color: var(--success); font-weight: bold;">↑</td><td style="text-align: right; font-size: 0.8rem;">Prep-Wedge Advantage</td></tr>
                         <tr><td>#3</td><td>K Health</td><td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td><td style="text-align: right; font-size: 0.8rem;">Service Reliability Lag</td></tr>
+                        <tr><td>#4</td><td>WebMD</td><td style="text-align: center; color: var(--danger); font-weight: bold;">↓</td><td style="text-align: right; font-size: 0.8rem;">Alarmist Fatigue</td></tr>
+                        <tr><td>#5</td><td>Wysa</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Empathetic Support</td></tr>
+                        <tr><td>#6</td><td>Buoy Health</td><td style="text-align: center;">↔</td><td style="text-align: right; font-size: 0.8rem;">Corporate Pivot</td></tr>
                     </table>
                 </div>
             </div>
@@ -158,7 +178,10 @@
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">NEW PULSE: April 24, 2026</div>
                     <p>Ada is showing a critical gap in mental health nuance—triage results are staying strictly clinical, missing the "emotional bridge" teens need.</p>
-                    <a href="#" class="source-link">View Analysis →</a>
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Strength</strong>Precision</div>
+                        <div class="swot-item"><strong>Weakness</strong>Rigidity</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,7 +193,10 @@
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">NEW PULSE: April 24, 2026</div>
                     <p>Reports of technical lag in the AI-chat handoff to human doctors. User sentiment dropping due to wait times.</p>
-                    <a href="#" class="source-link">View Analysis →</a>
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Strength</strong>Data Volume</div>
+                        <div class="swot-item"><strong>Weakness</strong>Service Lag</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -182,15 +208,18 @@
                 <div class="content-body">
                     <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">NEW PULSE: April 24, 2026</div>
                     <p>Cyberchondria fatigue is hitting a peak. Users are searching for "Calm alternatives" to WebMD.</p>
-                    <a href="#" class="source-link">View Analysis →</a>
+                    <div class="swot-list">
+                        <div class="swot-item"><strong>Strength</strong>Traffic</div>
+                        <div class="swot-item"><strong>Weakness</strong>Fear Factor</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- WYSA -->
-        <div id="wysa" class="tab-content"><div class="card"><div class="card-title">Wysa</div><p class="content-body">Steady signal. No major updates today.</p></div></div>
+        <div id="wysa" class="tab-content"><div class="card"><div class="card-title">Wysa</div><p class="content-body">Steady signal. Empathy leader in the mental health space.</p></div></div>
         <!-- BUOY -->
-        <div id="buoy" class="tab-content"><div class="card"><div class="card-title">Buoy Health</div><p class="content-body">B2B pivot continuing. Low consumer signal.</p></div></div>
+        <div id="buoy" class="tab-content"><div class="card"><div class="card-title">Buoy Health</div><p class="content-body">Continuing B2B/Insurance focus. Low consumer signal volume.</p></div></div>
 
     </div>
 
